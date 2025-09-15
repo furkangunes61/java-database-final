@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Review {
 
     @Id
-    private Long id;
+    private String id;
 
     @NotNull(message = "Customer cannot be null")
     private Long customerid;
