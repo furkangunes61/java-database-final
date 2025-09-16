@@ -11,7 +11,7 @@ public class Review {
     private String id;
 
     @NotNull(message = "Customer cannot be null")
-    private Long customerid;
+    private Long customerId;
 
     @NotNull(message = "Product cannot be null")
     private Long productId;
@@ -26,28 +26,28 @@ public class Review {
 
     public Review() {}
 
-    public Review(Long customerid, Long productId, Long storeId, Integer rating, String comment) {
-        this.customerid = customerid;
+    public Review(Long customerId, Long productId, Long storeId, Integer rating, String comment) {
+        this.customerId = customerId;
         this.productId = productId;
         this.storeId = storeId;
         this.rating = rating;
         this.comment = comment;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getCustomerid() {
-        return customerid;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomerid(Long customerid) {
-        this.customerid = customerid;
+    public void setCustomerId(Long customerid) {
+        this.customerId = customerid;
     }
 
     public Long getProductId() {
