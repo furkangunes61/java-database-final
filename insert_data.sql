@@ -1,3 +1,5 @@
+--loaded data
+
 use inventory;
 
 INSERT INTO product (name, category, price, sku)
