@@ -60,7 +60,7 @@ public class ProductController {
         System.out.println("result: ");
         System.out.println("result: ");
         Map<String, Object> map = new HashMap<>();
-        Product result = productRepository.findById(id);
+        Product result = productRepository.findById(id).orElse(null);
 
         System.out.println("result: " + result);
         map.put("products", result);

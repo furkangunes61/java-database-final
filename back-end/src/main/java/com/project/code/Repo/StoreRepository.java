@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StoreRepository extends JpaRepository<Store, Double> {
-    public Store findById(Long id);
+public interface StoreRepository extends JpaRepository<Store, Long> {
 
     @Query("SELECT p FROM Store p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', :pname, '%'))")
     public List<Store> findBySubName(String pname);

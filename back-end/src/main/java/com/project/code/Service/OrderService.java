@@ -46,7 +46,7 @@ public class OrderService {
             customer = customerRepository.save(customer);
         }
         else{
-            customer=existingCustomer;
+            customer = existingCustomer;
         }
 
 
@@ -68,15 +68,19 @@ public class OrderService {
         for (PurchaseProductDTO productDTO : purchaseProducts) {
             OrderItem orderItem = new OrderItem();
 
-            Inventory inventory=inventoryRepository.findByProductIdandStoreId(productDTO.getId(),placeOrderRequest.getStoreId());
+            Inventory inventory = inventoryRepository.findByProductIdandStoreId(productDTO.getId(), placeOrderRequest.getStoreId());
 
-            inventory.setStockLevel(inventory.getStockLevel()-productDTO.getQuantity());
+            inventory.setStockLevel(inventory.getStockLevel() - productDTO.getQuantity());
             inventoryRepository.save(inventory);
 
             orderItem.setOrder(orderDetails); // Link the order to the order item
-            orderItem.setProduct(productRepository.findById(productDTO.getId()));
+
+            Product product = productRepository.findById(productDTO.getId())
+                    .orElseThrow(() -> new RuntimeException("Product not found with id " + productDTO.getId()));
+            orderItem.setProduct(product);
+
             orderItem.setQuantity(productDTO.getQuantity());
-            orderItem.setPrice(productDTO.getPrice()*productDTO.getQuantity());
+            orderItem.setPrice(productDTO.getPrice() * productDTO.getQuantity());
 
             orderItemRepository.save(orderItem); // Save OrderItem
         }

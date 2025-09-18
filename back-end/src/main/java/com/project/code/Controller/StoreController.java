@@ -37,7 +37,7 @@ public class StoreController {
 
     @GetMapping("validate/{storeId}")
     public boolean validateStore(@PathVariable Long storeId) {
-        Store store = storeRepository.findById(storeId);
+        Store store = storeRepository.findById(storeId).orElse(null);
         if (store != null) {
             return true;
         }
